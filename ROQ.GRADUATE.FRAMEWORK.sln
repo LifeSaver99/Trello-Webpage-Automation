@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ROQ.GRADUATE.FRAMEWORK", "ROQ.GRADUATE.FRAMEWORK.csproj", "{796D20F3-ADD9-483C-BFC1-28B2B80AC382}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5FAFF2FF-722E-4DC9-B0E9-A654A8E03F03}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{796D20F3-ADD9-483C-BFC1-28B2B80AC382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{796D20F3-ADD9-483C-BFC1-28B2B80AC382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{796D20F3-ADD9-483C-BFC1-28B2B80AC382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{796D20F3-ADD9-483C-BFC1-28B2B80AC382}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49B49DAF-4ADB-4672-90A5-3E00915EB0F1}
+	EndGlobalSection
+EndGlobal
