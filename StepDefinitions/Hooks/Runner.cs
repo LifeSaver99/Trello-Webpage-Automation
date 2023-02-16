@@ -21,20 +21,21 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
         IObjectContainer _objectContainer;
         DriverManager _driverManager;
         static string reportPath = System.IO.Directory.GetParent(@"../../../").FullName
-             + Path.DirectorySeparatorChar + "Result"
-             + Path.DirectorySeparatorChar + "Result" + DateTime.Now.ToString("ddMMyyyy HHmmss");
+             + Path.DirectorySeparatorChar + "Report"
+             + Path.DirectorySeparatorChar + "Report" + DateTime.Now.ToString("ddMMyyyy HHmmss");
         static AventStack.ExtentReports.ExtentReports extent;
         static AventStack.ExtentReports.ExtentTest feature;
         AventStack.ExtentReports.ExtentTest scenario, steps;
 
-        
+        #region"Constructor" 
         public Runner(IObjectContainer objectContainer, DriverManager driverManager)
         {
             this._objectContainer = objectContainer;
             this._driverManager = driverManager;
-
         }
+        #endregion
 
+        #region"Hooks"
 
         [BeforeTestRun]
         public static void BeforeTestRun()
@@ -80,14 +81,17 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
             if (context.TestError == null)
             {   
                 steps.Log(Status.Pass, context.StepContext.StepInfo.Text);
+                string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text + DateTime.Now.ToString("ddMMyyyy HHmmss"));
+                _driverManager.TakeScreenshot(escapedStepName);
             }
             else if (context.TestError != null)
             {   
                 steps.Log(Status.Fail, context.StepContext.StepInfo.Text);
                 string screenShot = _driverManager.Driver.GetScreenshot().AsBase64EncodedString;
                 steps.AddScreenCaptureFromBase64String(screenShot);
-                string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text);
+                string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text+DateTime.Now.ToString("dd MM HH mm ss ff"));
                 _driverManager.TakeScreenshot(escapedStepName);
+
             }
 
         }
@@ -103,14 +107,10 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
         [AfterScenario]  
         public void AfterScenario()
         {
-
             _objectContainer.Resolve<DriverManager>().Driver.Quit();
-
         }
 
-
-
-
+        #endregion
 
     }
 

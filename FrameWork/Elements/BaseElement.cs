@@ -16,12 +16,16 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements
     {
         private DriverManager _driverManager ;
         internal By _elementLocator ;
+
+        #region"Constructor"
         public BaseElement(DriverManager driverManager, By elementLocator)
         {
             _driverManager = driverManager;
             _elementLocator = elementLocator;
         }
+        #endregion
 
+        #region"Methods"
         public IWebElement GetElement()
         {
             return _driverManager.Driver.FindElement(_elementLocator);
@@ -68,5 +72,6 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements
         {
              _driverManager.WaitUntil(_driverManager => GetElement().Displayed);
         }
+        #endregion
     }
 }

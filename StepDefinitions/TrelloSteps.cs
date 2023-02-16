@@ -21,25 +21,17 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions
             _trello = trello;
              Driver = driver;
         }
+
         [StepDefinition(@"I click the login button on the homepage to navigate to the login page")]
         public void GivenIClickTheAcceptCookiesButton()
         {
-            
-            _trello.HomePage.LoginButton.Click();
-            Thread.Sleep(2000);
-            _trello.LoginPage.TrelloHeaderText.AssertTextContains("Log in to Trello");
-            
+            _trello.GoToLoginPAge();
         }
 
-        [StepDefinition(@"I input the username and password to login to trello")]
-        public void WhenIInputTheUsernameAndPasswordToLoginToTrello()
+        [StepDefinition(@"I login as user")]
+        public void IloginAsUser()
         {
-            _trello.LoginPage.UsernameNameInput.SendKeys("dapsymigo001@gmail.com");
-            _trello.LoginPage.UsernameLoginButton.Click();
-            Thread.Sleep(2000);
-            _trello.LoginPage.PasswordInput.SendKeys("Oreoluwa1$");
-            _trello.LoginPage.PasswordLoginButton.Click();
-            
+            _trello.LoginPage.Login("dapsymigo001@gmail.com", "Oreoluwa1$");
         }
 
         [StepDefinition(@"the trello hompage is displayed")]
@@ -51,17 +43,13 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions
         [Then(@"I search for ""([^""]*)"" in the search bar")]
         public void ThenISearchForInTheSearchBar(string boardsname)
         {
-            _trello.HomePage.SearchInput.SendKeys(boardsname);
-            _trello.HomePage.SearchInputHealthCornerValue.Click();
-            Thread.Sleep(2000);
+            _trello.HomePage.SearchBoardItem(boardsname);
         }
 
         [Then(@"I select ""([^""]*)"" from the workspace tab")]
         public void ThenISelectFromTheWorkspaceTab(string item)
         {
-            _trello.HomePage.WorkspaceDropDownArrow.WaitUntilVisible();
-            _trello.HomePage.WorkspaceDropDownArrow.Click();
-            _trello.HomePage.WorkspaceListItemGhaneva(item).Click();
+            _trello.HomePage.WorkSpaceDropDownITemSelection(item);
         }
 
         [Then(@"the Health Corner Boards is Displayed")]

@@ -26,10 +26,13 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
         
         public WebDriver Driver;
 
+        #region"Constructor"
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public DriverManager() { }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #endregion
 
+        #region"Methods"
         public void TimeOut(TimeSpan timeout)
         {
             Driver.Manage().Timeouts().ImplicitWait = timeout;
@@ -132,5 +135,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             var filePathToSave = $"C:\\Users\\Adedapo.Adeseye\\source\\repos\\ROQ.GRADUATE.FRAMEWORK\\Screenshot\\{name}.png";
             screenshot.SaveAsFile(filePathToSave, ScreenshotImageFormat.Png);
         }
+
+        #endregion
     }
 }
