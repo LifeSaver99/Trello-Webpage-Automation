@@ -22,8 +22,11 @@ Scenario: Create a new workspace from the trello HomePage
 	Given I click the login button on the homepage to navigate to the login page
 	When I login as user
 	Then the trello hompage is displayed
-	Then I search for "Health Corner" in the search bar
-	And the Health Corner Boards is Displayed
+	Then I click the create new worrkspace button
+	And Input "My Workspace4" as the workspace name
+	And I Input the WorkSPace type
+	Then I submit the new Workspace created
+	Then I verify "My Workspace4" is displayed in workspaces
 
 
 

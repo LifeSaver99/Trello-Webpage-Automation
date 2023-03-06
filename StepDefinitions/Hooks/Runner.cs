@@ -12,6 +12,7 @@ using OpenQA.Selenium.Chrome;
 using AventStack.ExtentReports.Reporter;
 using System.IO;
 using AventStack.ExtentReports;
+using ROQ.GRADUATE.FRAMEWORK.FrameWork.Variables;
 
 namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
 {
@@ -26,6 +27,9 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
         static AventStack.ExtentReports.ExtentReports extent;
         static AventStack.ExtentReports.ExtentTest feature;
         AventStack.ExtentReports.ExtentTest scenario, steps;
+        public static ConfigSettings config;
+        static string configSettingsPath = System.IO.Directory.GetParent(@"../../../").FullName
+            + Path.DirectorySeparatorChar + "FrameWork/Configuration/appsettings.json";
 
         #region"Constructor" 
         public Runner(IObjectContainer objectContainer, DriverManager driverManager)
@@ -40,6 +44,12 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
+            config = new ConfigSettings();
+            ConfigurationBuilder builder = new ConfigurationBuilder();
+            builder.AddJsonFile(configSettingsPath);
+            IConfigurationRoot configuration = builder.Build();
+            configuration.Bind(config);
+
             ExtentHtmlReporter htmlReport = new ExtentHtmlReporter(reportPath);
             extent = new AventStack.ExtentReports.ExtentReports();
             extent.AttachReporter(htmlReport);
@@ -59,9 +69,9 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
        {    
             scenario = extent.CreateTest(context.ScenarioInfo.Title);
 
-            _driverManager.BrowserTypeSwitch("chromeDriver", false);
+            _driverManager.BrowserTypeSwitch(false);
             _driverManager.TimeOut(TimeSpan.FromSeconds(30));
-            _driverManager.Init("https://trello.com");
+            _driverManager.Init();
             //_objectContainer.RegisterInstanceAs<DriverManager>(_driverManager);
             _objectContainer.RegisterInstanceAs<Trello>(new Trello(_driverManager));
        }

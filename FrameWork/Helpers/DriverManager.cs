@@ -16,6 +16,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
+using ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks;
 
 namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
 {
@@ -38,26 +39,26 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             Driver.Manage().Timeouts().ImplicitWait = timeout;
         }
 
-        public void BrowserTypeSwitch (string browserType, bool remoteExecution)
+        public void BrowserTypeSwitch (bool remoteExecution)
         {
             if (remoteExecution == true)
             {
                
                
-                if (browserType == "chromeDriver")
+                if (Runner.config.BrowserType == "chromeDriver")
                 {
                     ChromeOptions options = new ChromeOptions();
                     Driver = new RemoteWebDriver(options);
                     options.AddArgument("incognito");
                 }
 
-                else if (browserType == "firefox")
+                else if (Runner.config.BrowserType == "firefox")
                 {
                     FirefoxOptions options = new FirefoxOptions();
                     options.AddArgument("incognito");
                     Driver = new RemoteWebDriver(options);
                 }
-                else if (browserType == "edge")
+                else if (Runner.config.BrowserType == "edge")
                 {
                     EdgeOptions options = new EdgeOptions();
                     options.AddArgument("inPrivate");
@@ -67,7 +68,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             }
             else
             {
-                if (browserType == "chromeDriver")
+                if (Runner.config.BrowserType == "chromeDriver")
                 {
                     //System.Environment.SetEnvironmentVariable("webdriver.chrome.driver", "C://Selenium-java browserstack//chromedriver_win32//chromedriver.exe");
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
@@ -75,14 +76,14 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
                     options.AddArgument("incognito");
                     Driver = new ChromeDriver(options);                    
                 }
-                else if (browserType == "firefox")
+                else if (Runner.config.BrowserType == "firefox")
                 {
                     FirefoxOptions options = new FirefoxOptions();
                     options.AddArgument("incognito");
                     Driver = new FirefoxDriver(options);
                 }
 
-                else if (browserType == "edge")
+                else if (Runner.config.BrowserType == "edge")
                 {
                     EdgeOptions options = new EdgeOptions();
                     options.AddArgument("inPrivate");
@@ -98,9 +99,9 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             GetWebDriverWait().Until(function);
         }
 
-        public void Init(string url)
+        public void Init()
         {
-            Driver.Navigate().GoToUrl(url);
+            Driver.Navigate().GoToUrl(Runner.config.AppUrl);
         }
 
         

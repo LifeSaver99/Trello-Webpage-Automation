@@ -137,3 +137,4 @@ C:\Users\Adedapo.Adeseye\source\repos\ROQ.GRADUATE.FRAMEWORK\obj\Debug\net6.0\re
 C:\Users\Adedapo.Adeseye\source\repos\ROQ.GRADUATE.FRAMEWORK\obj\Debug\net6.0\ROQ.GRADUATE.FRAMEWORK.pdb
 C:\Users\Adedapo.Adeseye\source\repos\ROQ.GRADUATE.FRAMEWORK\obj\Debug\net6.0\ROQ.GRADUATE.FRAMEWORK.genruntimeconfig.cache
 C:\Users\Adedapo.Adeseye\source\repos\ROQ.GRADUATE.FRAMEWORK\obj\Debug\net6.0\ref\ROQ.GRADUATE.FRAMEWORK.dll
+C:\Users\Adedapo.Adeseye\source\repos\ROQ.GRADUATE.FRAMEWORK\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using ROQ.GRADUATE.FRAMEWORK.Applications;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
+using ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions
         [StepDefinition(@"I login as user")]
         public void IloginAsUser()
         {
-            _trello.LoginPage.Login("dapsymigo001@gmail.com", "Oreoluwa1$");
+            _trello.LoginPage.Login(Runner.config.Username,Runner.config.Password);
         }
 
         [StepDefinition(@"the trello hompage is displayed")]
@@ -51,6 +52,41 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions
         {
             _trello.HomePage.WorkSpaceDropDownITemSelection(item);
         }
+
+        [Then(@"I click the create new worrkspace button")]
+        public void ThenIClickTheCreateNewWorrkspaceButton()
+        {
+            _trello.HomePage.WorkSpaceCreateButton.Click();
+        }
+
+        [Then(@"Input ""([^""]*)"" as the workspace name")]
+        public void ThenInputAsTheWorkspaceName(string workSpaceName)
+        {
+            _trello.HomePage.WorkSpaceCreateNewNameInput.SendKeys(workSpaceName);
+        }
+
+        [Then(@"I Input the WorkSPace type")]
+        public void ThenIInputTheWorkSPaceType()
+        {   
+            _trello.HomePage.WorkSpaceCreateTypeDropDrownArrow.Click();
+            _trello.HomePage.WorkSpaceCreateType.Click();
+        }
+
+        [Then(@"I submit the new Workspace created")]
+        public void ThenISubmitTheNewWorkspaceCreated()
+        {
+            _trello.HomePage.WorkSpaceCreateSumbit.Click();
+            _trello.HomePage.TryLaterButton.Click();
+        }
+
+        [Then(@"I verify ""([^""]*)"" is displayed in workspaces")]
+        public void ThenIVerifyIsDisplayedInWorkspaces(string name)
+        {
+            _trello.HomePage.NewWorkSpaceHeaderName(name).WaitUntilVisible();
+        }
+
+
+
 
         [Then(@"the Health Corner Boards is Displayed")]
         public void ThenTheBoardsIsDisplayed()
