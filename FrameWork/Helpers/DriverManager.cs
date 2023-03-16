@@ -45,20 +45,20 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             {
                
                
-                if (Runner.config.BrowserType == "chromeDriver")
+                if (Runner.config.BrowserType.Equals("chromeDriver"))
                 {
                     ChromeOptions options = new ChromeOptions();
                     Driver = new RemoteWebDriver(options);
                     options.AddArgument("incognito");
                 }
 
-                else if (Runner.config.BrowserType == "firefox")
+                else if (Runner.config.BrowserType.Equals("firefox"))
                 {
                     FirefoxOptions options = new FirefoxOptions();
                     options.AddArgument("incognito");
                     Driver = new RemoteWebDriver(options);
                 }
-                else if (Runner.config.BrowserType == "edge")
+                else if (Runner.config.BrowserType.Equals("edge"))
                 {
                     EdgeOptions options = new EdgeOptions();
                     options.AddArgument("inPrivate");
@@ -68,7 +68,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             }
             else
             {
-                if (Runner.config.BrowserType == "chromeDriver")
+                if (Runner.config.BrowserType.Equals("chromeDriver"))
                 {
                     //System.Environment.SetEnvironmentVariable("webdriver.chrome.driver", "C://Selenium-java browserstack//chromedriver_win32//chromedriver.exe");
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
@@ -76,14 +76,14 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
                     options.AddArgument("incognito");
                     Driver = new ChromeDriver(options);                    
                 }
-                else if (Runner.config.BrowserType == "firefox")
+                else if (Runner.config.BrowserType.Equals("firefox"))
                 {
                     FirefoxOptions options = new FirefoxOptions();
                     options.AddArgument("incognito");
                     Driver = new FirefoxDriver(options);
                 }
 
-                else if (Runner.config.BrowserType == "edge")
+                else if (Runner.config.BrowserType.Equals("edge"))
                 {
                     EdgeOptions options = new EdgeOptions();
                     options.AddArgument("inPrivate");
@@ -133,7 +133,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
         public void TakeScreenshot(string name)
         {
             var screenshot = Driver.TakeScreenshot();
-            var filePathToSave = $"C:\\Users\\Adedapo.Adeseye\\source\\repos\\ROQ.GRADUATE.FRAMEWORK\\Screenshot\\{name}.png";
+            var filePathToSave = $"C:\\TempPath\\WebScreenshot\\{name}.png";
             screenshot.SaveAsFile(filePathToSave, ScreenshotImageFormat.Png);
         }
 

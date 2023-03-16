@@ -14,8 +14,9 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications
     public class Trello
     {
         public LoginPage LoginPage => new LoginPage(_driverManager);
-        public HomePage HomePage => new HomePage(_driverManager);
+        public Dashboard Dashboard => new Dashboard(_driverManager);
         public Boards Boards => new Boards(_driverManager);
+        public HomePage HomePage => new HomePage(_driverManager);
 
         DriverManager _driverManager;
 
@@ -24,19 +25,6 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications
         {   
             _driverManager =driverManager;
         }
-        #endregion
-
-        #region"Elements"
-        public BaseElement LoginButton => new BaseElement(_driverManager,By.XPath("//div[@class='Buttonsstyles__ButtonGroup-sc-1jwidxo-3 jnMZCI']//a[contains(text(),'Log in')]"));
-        #endregion
-
-        #region"Methods"
-        public void GoToLoginPAge()
-        {
-            LoginButton.Click();
-            LoginPage.LoginToTrelloHeaderText.AssertTextContains("Log in to Trello");
-        }
-
         #endregion
 
     }

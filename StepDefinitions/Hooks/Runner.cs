@@ -91,14 +91,14 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
             if (context.TestError == null)
             {   
                 steps.Log(Status.Pass, context.StepContext.StepInfo.Text);
-                string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text + DateTime.Now.ToString("ddMMyyyy HHmmss"));
-                _driverManager.TakeScreenshot(escapedStepName);
             }
             else if (context.TestError != null)
             {   
                 steps.Log(Status.Fail, context.StepContext.StepInfo.Text);
+
                 string screenShot = _driverManager.Driver.GetScreenshot().AsBase64EncodedString;
                 steps.AddScreenCaptureFromBase64String(screenShot);
+
                 string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text+DateTime.Now.ToString("dd MM HH mm ss ff"));
                 _driverManager.TakeScreenshot(escapedStepName);
 

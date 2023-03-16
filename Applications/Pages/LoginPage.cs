@@ -25,7 +25,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications.Pages
         #endregion
 
         #region "Elements"
-       public BaseElement LoginToTrelloHeaderText => new BaseElement(_driverManager, By.XPath("//h1[contains(text(),'Log in to Trello')]"));
+       
        public BaseElement UsernameNameInput => new BaseElement(_driverManager, By.XPath("//input[@id='user']"));
        public BaseElement UsernameLoginButton => new BaseElement(_driverManager, By.XPath("//input[@id='login']"));
        public BaseElement PasswordLoginButton => new BaseElement(_driverManager, By.XPath("//button[@id='login-submit']"));
