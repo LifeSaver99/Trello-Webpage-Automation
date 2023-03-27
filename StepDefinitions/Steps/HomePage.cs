@@ -29,5 +29,12 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Steps
             _trello.HomePage.GoToLoginPAge();
         }
 
+        [StepDefinition(@"I click the login button")]
+        public void GivenIClickTheLoginButton()
+        {
+            _trello.HomePage.LoginButton.Click();
+        }
+
+
     }
 }

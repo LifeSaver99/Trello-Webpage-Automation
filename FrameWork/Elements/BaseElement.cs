@@ -1,6 +1,7 @@
 ﻿using BoDi;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
 using System;
@@ -31,6 +32,11 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements
             return _driverManager.Driver.FindElement(_elementLocator);
         }
 
+        public void MouseOver()
+        {
+            Actions action = new Actions(_driverManager.Driver);
+            action.MoveToElement(GetElement()).Build().Perform();
+        }
         public bool Exists(TimeSpan timeout)
         {   
             bool exists = true;

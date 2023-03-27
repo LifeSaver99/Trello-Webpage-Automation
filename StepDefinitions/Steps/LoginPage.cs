@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -25,9 +26,19 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Steps
         public void IloginAsUser()
         {
             _trello.LoginPage.Login(Runner.config.Username, Runner.config.Password);
-            _trello.LoginPage.BoardsTxt.WaitUntilExist(30);
         }
 
+        [StepDefinition(@"I login as invalid user")]
+        public void IloginAsInvalidUser()
+        {
+            _trello.LoginPage.LoginAsInvalidUser();   
+        }
+
+        [StepDefinition(@"the trello dashboard is displayed")]
+        public void ThenTheTrelloDashboardIsDisplayed()
+        {
+            _trello.LoginPage.BoardsTxt.WaitUntilVisible();
+        }
 
     }
 }

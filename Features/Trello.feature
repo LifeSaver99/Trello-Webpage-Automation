@@ -26,6 +26,11 @@ Scenario: Create a new workspace from the trello HomePage
 	And I submit the new Workspace created
 	Then I verify "My Workspace4" is displayed in workspaces
 
+Scenario: Validate Test fails at white space input in Email Input
+	Given I click the login button
+	When I login as invalid user
+	Then the trello dashboard is displayed
+
 
 
 	

@@ -23,7 +23,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications.Pages
 
             #region"Elements"
             public BaseElement SearchInput => new BaseElement(_driverManager,By.XPath("//input[@placeholder='Search']"));
-            public BaseElement SearchInputHealthCornerValue => new BaseElement(_driverManager,By.XPath("//span[@title='HEALTH CORNER']"));
+            public BaseElement SearchInputHealthCornerValue => new BaseElement(_driverManager,By.XPath("//span[contains(text(),'HEALTH CORNER')]"));
             public BaseElement WorkspaceDropDownArrow => new BaseElement(_driverManager,By.XPath("//button[@data-testid='workspace-switcher']//span[contains(@aria-label,'DownIcon')]"));
             public BaseElement HealthCornerBoardTitle => new BaseElement(_driverManager, By.XPath("//a[@title='HEALTH CORNER (currently active)']"));
             public BaseElement WorkSpaceCreateButton => new BaseElement(_driverManager, By.XPath("//button[@aria-label='Create a Workspace']"));
@@ -44,6 +44,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications.Pages
             public void SearchBoardItem(string boardname)
             {
                SearchInput.SendKeys(boardname);
+               //SearchInputHealthCornerValue.MouseOver();
                SearchInputHealthCornerValue.Click();
             }
             

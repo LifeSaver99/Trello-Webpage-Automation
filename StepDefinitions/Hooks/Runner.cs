@@ -70,7 +70,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
             scenario = extent.CreateTest(context.ScenarioInfo.Title);
 
             _driverManager.BrowserTypeSwitch(false);
-            _driverManager.TimeOut(TimeSpan.FromSeconds(30));
+            _driverManager.TimeOut(TimeSpan.FromSeconds(15));
             _driverManager.Init();
             //_objectContainer.RegisterInstanceAs<DriverManager>(_driverManager);
             _objectContainer.RegisterInstanceAs<Trello>(new Trello(_driverManager));

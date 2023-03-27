@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
+using ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,16 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications.Pages
             PasswordInput.SendKeys(password);
             PasswordLoginButton.Click();
             BoardsTxt.WaitUntilExist(30);
+
+        }
+
+        public void LoginAsInvalidUser()
+        {
+            UsernameNameInput.SendKeys(Runner.config.Username);
+            UsernameLoginButton.Click();
+            Thread.Sleep(2000);
+            PasswordInput.SendKeys("hgtyres");
+            PasswordLoginButton.Click();
 
         }
 
