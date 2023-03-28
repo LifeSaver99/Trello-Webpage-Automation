@@ -78,6 +78,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
                 }
                 else if (Runner.config.BrowserType.Equals("firefox"))
                 {
+                    new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig(), VersionResolveStrategy.Latest);
                     FirefoxOptions options = new FirefoxOptions();
                     options.AddArgument("incognito");
                     Driver = new FirefoxDriver(options);
@@ -85,6 +86,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
 
                 else if (Runner.config.BrowserType.Equals("edge"))
                 {
+                    new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig(), VersionResolveStrategy.MatchingBrowser);
                     EdgeOptions options = new EdgeOptions();
                     options.AddArgument("inPrivate");
                     Driver = new EdgeDriver(options);
@@ -102,6 +104,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
         public void Init()
         {
             Driver.Navigate().GoToUrl(Runner.config.AppUrl);
+            Driver.Manage().Window.Maximize();
         }
 
         
