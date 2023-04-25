@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BoDi;
-using OpenQA.Selenium;
-using ROQ.GRADUATE.FRAMEWORK.Applications.Pages;
-using ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements;
+﻿using ROQ.GRADUATE.FRAMEWORK.Applications.Pages;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
 
 namespace ROQ.GRADUATE.FRAMEWORK.Applications
@@ -22,8 +14,8 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications
 
         #region"Constructor"
         public Trello(DriverManager driverManager)
-        {   
-            _driverManager =driverManager;
+        {
+            _driverManager = driverManager;
         }
         #endregion
 

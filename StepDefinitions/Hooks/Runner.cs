@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Configuration;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-using BoDi;
-using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
-using ROQ.GRADUATE.FRAMEWORK.Applications;
-using OpenQA.Selenium.Chrome;
+﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
-using System.IO;
-using AventStack.ExtentReports;
+using BoDi;
+using Microsoft.Extensions.Configuration;
+using ROQ.GRADUATE.FRAMEWORK.Applications;
+using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Variables;
+using System;
+using System.IO;
+using TechTalk.SpecFlow;
 
 namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
 {
@@ -62,11 +57,11 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
             feature = extent.CreateTest(context.FeatureInfo.Title);
         }
 
-       
-        
-       [BeforeScenario]
-       public  void  BeforeScenario(ScenarioContext context)
-       {    
+
+
+        [BeforeScenario]
+        public void BeforeScenario(ScenarioContext context)
+        {
             scenario = extent.CreateTest(context.ScenarioInfo.Title);
 
             _driverManager.BrowserTypeSwitch(false);
@@ -74,7 +69,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
             _driverManager.Init();
             //_objectContainer.RegisterInstanceAs<DriverManager>(_driverManager);
             _objectContainer.RegisterInstanceAs<Trello>(new Trello(_driverManager));
-       }
+        }
 
 
         [BeforeStep]
@@ -87,19 +82,19 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
         [AfterStep]
         public void AfterStep(ScenarioContext context)
         {
-            
+
             if (context.TestError == null)
-            {   
+            {
                 steps.Log(Status.Pass, context.StepContext.StepInfo.Text);
             }
             else if (context.TestError != null)
-            {   
+            {
                 steps.Log(Status.Fail, context.StepContext.StepInfo.Text);
 
                 string screenShot = _driverManager.Driver.GetScreenshot().AsBase64EncodedString;
                 steps.AddScreenCaptureFromBase64String(screenShot);
 
-                string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text+DateTime.Now.ToString("dd MM HH mm ss ff"));
+                string escapedStepName = Uri.EscapeDataString(context.StepContext.StepInfo.Text + DateTime.Now.ToString("dd MM HH mm ss ff"));
                 _driverManager.TakeScreenshot(escapedStepName);
 
             }
@@ -114,7 +109,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks
         }
 
 
-        [AfterScenario]  
+        [AfterScenario]
         public void AfterScenario()
         {
             _objectContainer.Resolve<DriverManager>().Driver.Quit();

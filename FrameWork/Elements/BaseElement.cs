@@ -1,22 +1,15 @@
-﻿using BoDi;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements
 {
     public class BaseElement
     {
-        private DriverManager _driverManager ;
-        internal By _elementLocator ;
+        private DriverManager _driverManager;
+        internal By _elementLocator;
 
         #region"Constructor"
         public BaseElement(DriverManager driverManager, By elementLocator)
@@ -38,20 +31,20 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements
             action.MoveToElement(GetElement()).Build().Perform();
         }
         public bool Exists(TimeSpan timeout)
-        {   
+        {
             bool exists = true;
             try
             {
                 GetElement();
             }
-            
+
             catch
             {
                 exists = false;
             }
             return exists;
         }
-        
+
         public void AssertTextContains(string expected)
         {
             WaitUntilExist(30);
@@ -70,13 +63,13 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements
         }
 
         public void WaitUntilExist(int timeInSeconds)
-        { 
-           Exists(TimeSpan.FromSeconds(timeInSeconds));
+        {
+            Exists(TimeSpan.FromSeconds(timeInSeconds));
         }
 
         public void WaitUntilVisible()
         {
-             _driverManager.WaitUntil(_driverManager => GetElement().Displayed);
+            _driverManager.WaitUntil(_driverManager => GetElement().Displayed);
         }
         #endregion
     }

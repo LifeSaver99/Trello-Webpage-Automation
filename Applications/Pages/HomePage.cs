@@ -1,12 +1,6 @@
 ﻿using OpenQA.Selenium;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Elements;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ROQ.GRADUATE.FRAMEWORK.Applications.Pages;
 
 namespace ROQ.GRADUATE.FRAMEWORK.Applications.Pages
 {
@@ -16,7 +10,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.Applications.Pages
 
         #region Constructor
         public HomePage(DriverManager driverManager)
-        { 
+        {
             _driverManager = driverManager;
         }
         #endregion

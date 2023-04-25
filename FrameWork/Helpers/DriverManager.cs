@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BoDi;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
-using System.Threading;
+using ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks;
+using System;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
-using ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks;
 
 namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
 {
     public class DriverManager
     {
-       
-       
-        
         public WebDriver Driver;
 
         #region"Constructor"
@@ -39,12 +28,12 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             Driver.Manage().Timeouts().ImplicitWait = timeout;
         }
 
-        public void BrowserTypeSwitch (bool remoteExecution)
+        public void BrowserTypeSwitch(bool remoteExecution)
         {
             if (remoteExecution == true)
             {
-               
-               
+
+
                 if (Runner.config.BrowserType.Equals("chromeDriver"))
                 {
                     ChromeOptions options = new ChromeOptions();
@@ -70,11 +59,10 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             {
                 if (Runner.config.BrowserType.Equals("chromeDriver"))
                 {
-                    //System.Environment.SetEnvironmentVariable("webdriver.chrome.driver", "C://Selenium-java browserstack//chromedriver_win32//chromedriver.exe");
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
                     ChromeOptions options = new ChromeOptions();
                     options.AddArgument("incognito");
-                    Driver = new ChromeDriver(options);                    
+                    Driver = new ChromeDriver(options);
                 }
                 else if (Runner.config.BrowserType.Equals("firefox"))
                 {
@@ -92,8 +80,6 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
                     Driver = new EdgeDriver(options);
                 }
             }
-           
-            
         }
 
         public void WaitUntil(Func<IWebDriver, bool> function)
@@ -107,10 +93,10 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
             Driver.Manage().Window.Maximize();
         }
 
-        
+
         public void Quit()
         {
-          Driver.Quit();
+            Driver.Quit();
         }
 
         public void WaitForPageToLoad()
@@ -129,7 +115,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers
 
         public WebDriverWait GetWebDriverWait()
         {
-            return new WebDriverWait(Driver,TimeSpan.FromSeconds(30));
+            return new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
 
         }
 

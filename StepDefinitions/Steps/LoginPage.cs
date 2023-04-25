@@ -1,12 +1,6 @@
 ﻿using ROQ.GRADUATE.FRAMEWORK.Applications;
 using ROQ.GRADUATE.FRAMEWORK.FrameWork.Helpers;
 using ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Hooks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Steps
@@ -31,7 +25,7 @@ namespace ROQ.GRADUATE.FRAMEWORK.StepDefinitions.Steps
         [StepDefinition(@"I login as invalid user")]
         public void IloginAsInvalidUser()
         {
-            _trello.LoginPage.LoginAsInvalidUser();   
+            _trello.LoginPage.LoginAsInvalidUser();
         }
 
         [StepDefinition(@"the trello dashboard is displayed")]
